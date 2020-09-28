@@ -1,0 +1,12 @@
+{
+  "name": "recipemanager",
+  "displayName": "recipemanager",
+  "expo": {
+    "name": "recipemanager",
+    "slug": "recipemanager",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
