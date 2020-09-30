@@ -22,16 +22,16 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 
-@Path("/recipes")
-public class Recipes {
+@Path("/collections")
+public class Collections {
 
 	@GET
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Entity> getAll(@QueryParam("collection") String collection) {
+	public List<Entity> getAll(@QueryParam("owner") String owner) {
 	    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-	    Filter filter = new FilterPredicate("collection", FilterOperator.EQUAL, collection);
-	    Query query = new Query("recipes").setFilter(filter);
+	    Filter filter = new FilterPredicate("owner", FilterOperator.EQUAL, owner);
+	    Query query = new Query("collections").setFilter(filter);
 		PreparedQuery pq = datastore.prepare(query);
 		List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
 		return results;
@@ -44,7 +44,7 @@ public class Recipes {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Entity post(Properties recipe) {
 	    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-	    Entity entity=new Entity("recipes");
+	    Entity entity=new Entity("collections");
 	    
 	    Set<String> keys = recipe.stringPropertyNames();
 	    for (String key : keys) {
