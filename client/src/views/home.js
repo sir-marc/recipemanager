@@ -1,15 +1,39 @@
 import React from "react";
+import { useQuery } from "react-query";
 import { StyleSheet, Text, View } from "react-native";
 import { Link } from "react-router-native";
+import * as api from "../api";
+import { useUser } from "../service/user";
 
-const Home = () => (
-  <View>
-    <Text>Here comes the home screen with a list of collections</Text>
-    <Link to="/collection-detail/12345" underlayColor="#f0f4f7">
-      <Text>Link to collection</Text>
-    </Link>
-  </View>
-);
+const Home = () => {
+  const user = useUser();
+  const { isLoading, isError, data, error } = useQuery("collections", () =>
+    api.collections.fetchAllPerUser(user)
+  );
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (isError) {
+    return <Text>Error: {error.message}</Text>;
+  }
+
+  return (
+    <View>
+      <Text>Here comes the home screen with a list of collections</Text>
+      {data.map((collection) => (
+        <Link
+          key={collection.id}
+          to={`/collection-detail/${collection.id}`}
+          underlayColor="#f0f4f7"
+        >
+          <Text>{collection.title}</Text>
+        </Link>
+      ))}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
