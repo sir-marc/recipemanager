@@ -22,6 +22,7 @@
     "react-native-screens": "~2.10.1",
     "react-native-unimodules": "~0.11.0",
     "react-native-web": "~0.13.12",
+    "react-query": "^2.23.1",
     "react-router-dom": "^5.2.0",
     "react-router-native": "^5.2.0"
   },
