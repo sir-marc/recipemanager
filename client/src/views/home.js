@@ -1,9 +1,12 @@
 import React from "react";
-import { useQuery } from "react-query";
-import { StyleSheet, Text, View } from "react-native";
+import { useQuery, QueryCache, ReactQueryCacheProvider } from "react-query";
+import { Text, View } from "react-native";
 import { Link } from "react-router-native";
 import * as api from "../api";
 import { useUser } from "../service/user";
+import CreateCollection from "../components/create-collection";
+
+const queryCache = new QueryCache();
 
 const Home = () => {
   const user = useUser();
@@ -31,34 +34,13 @@ const Home = () => {
           <Text>{collection.title}</Text>
         </Link>
       ))}
+      <CreateCollection />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 25,
-    padding: 10,
-  },
-  header: {
-    fontSize: 20,
-  },
-  nav: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  navItem: {
-    flex: 1,
-    alignItems: "center",
-    padding: 10,
-  },
-  subNavItem: {
-    padding: 5,
-  },
-  topic: {
-    textAlign: "center",
-    fontSize: 15,
-  },
-});
-
-export default Home;
+export default (props) => (
+  <ReactQueryCacheProvider queryCache={queryCache}>
+    <Home {...props} />
+  </ReactQueryCacheProvider>
+);

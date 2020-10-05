@@ -11,9 +11,17 @@ const listTransformer = (list) => list.map(singleTransformer);
 
 export const collections = {
   fetchAllPerUser: (user) => {
-    console.log(`${COLLECTIONS}?owner=${user}`);
     return fetch(`${COLLECTIONS}?owner=${user}`)
       .then((res) => res.json())
       .then(listTransformer);
+  },
+  create: (collection) => {
+    return fetch(COLLECTIONS, {
+      method: "POST",
+      body: JSON.stringify(collection),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => {
+      return res;
+    });
   },
 };
