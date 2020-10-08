@@ -20,8 +20,21 @@ export const collections = {
       method: "POST",
       body: JSON.stringify(collection),
       headers: { "Content-Type": "application/json" },
-    }).then((res) => {
-      return res;
+    }).then((res) => res.json());
+  },
+};
+
+export const recipes = {
+  delete: (id) => {
+    return fetch(`${RECIPES}/${id}`, {
+      method: "DELETE",
     });
+  },
+  update: (id, recipe) => {
+    return fetch(`${RECIPES}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(recipe),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => res.json());
   },
 };
