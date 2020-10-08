@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, QueryCache, ReactQueryCacheProvider } from "react-query";
-import { Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 import { Link } from "react-router-native";
 import * as api from "../api";
 import { useUser } from "../service/user";
@@ -26,13 +26,15 @@ const Home = () => {
     <View>
       <Text>Here comes the home screen with a list of collections</Text>
       {data.map((collection) => (
-        <Link
-          key={collection.id}
-          to={`/collection-detail/${collection.id}`}
-          underlayColor="#f0f4f7"
-        >
-          <Text>{collection.title}</Text>
-        </Link>
+        <View key={collection.id}>
+          <Button title="D"></Button>
+          <Link
+            to={`/collection-detail/${collection.id}`}
+            underlayColor="#f0f4f7"
+          >
+            <Text>{collection.title}</Text>
+          </Link>
+        </View>
       ))}
       <CreateCollection />
     </View>
