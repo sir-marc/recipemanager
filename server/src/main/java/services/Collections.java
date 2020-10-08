@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -17,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -72,5 +74,22 @@ public class Collections {
 			System.out.println("did not go well");
 			return -1;
 		}
+	}
+
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Entity update(@PathParam("id") long id, Properties collection) throws EntityNotFoundException {
+    	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    	Key key = KeyFactory.createKey("Collections", id);
+    	Entity entity=datastore.get(key);
+    
+	    Set<String> keys = collection.stringPropertyNames();
+	    for (String valueKey : keys) {
+		    entity.setProperty(valueKey, collection.getProperty(valueKey));
+	    }
+	    datastore.put(entity);
+		return entity;
 	}
 }
