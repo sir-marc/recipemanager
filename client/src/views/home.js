@@ -6,8 +6,6 @@ import * as api from "../api";
 import { useUser } from "../service/user";
 import CreateCollection from "../components/create-collection";
 
-const queryCache = new QueryCache();
-
 const Home = () => {
   const user = useUser();
   const { isLoading, isError, data, error } = useQuery("collections", () =>
@@ -41,8 +39,4 @@ const Home = () => {
   );
 };
 
-export default (props) => (
-  <ReactQueryCacheProvider queryCache={queryCache}>
-    <Home {...props} />
-  </ReactQueryCacheProvider>
-);
+export default Home;
