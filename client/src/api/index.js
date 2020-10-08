@@ -22,6 +22,18 @@ export const collections = {
       headers: { "Content-Type": "application/json" },
     }).then((res) => res.json());
   },
+  delete: (id) => {
+    return fetch(`${COLLECTIONS}/${id}`, {
+      method: "DELETE",
+    });
+  },
+  update: (id, recipe) => {
+    return fetch(`${COLLECTIONS}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(collection),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => res.json());
+  },
 };
 
 export const recipes = {
