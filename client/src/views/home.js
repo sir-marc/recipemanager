@@ -5,8 +5,7 @@ import { Link } from "react-router-native";
 import * as api from "../api";
 import { useUser } from "../service/user";
 import CreateCollection from "../components/create-collection";
-
-const queryCache = new QueryCache();
+import Item from "../components/collection-list/item";
 
 const Home = () => {
   const user = useUser();
@@ -26,23 +25,11 @@ const Home = () => {
     <View>
       <Text>Here comes the home screen with a list of collections</Text>
       {data.map((collection) => (
-        <View key={collection.id}>
-          <Button title="D"></Button>
-          <Link
-            to={`/collection-detail/${collection.id}`}
-            underlayColor="#f0f4f7"
-          >
-            <Text>{collection.title}</Text>
-          </Link>
-        </View>
+        <Item key={collection.id} collection={collection} />
       ))}
       <CreateCollection />
     </View>
   );
 };
 
-export default (props) => (
-  <ReactQueryCacheProvider queryCache={queryCache}>
-    <Home {...props} />
-  </ReactQueryCacheProvider>
-);
+export default Home;
