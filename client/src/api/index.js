@@ -27,7 +27,7 @@ export const collections = {
       method: "DELETE",
     });
   },
-  update: (id, recipe) => {
+  update: (id, collection) => {
     return fetch(`${COLLECTIONS}/${id}`, {
       method: "PUT",
       body: JSON.stringify(collection),
