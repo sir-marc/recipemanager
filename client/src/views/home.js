@@ -1,11 +1,19 @@
 import React from "react";
 import { useQuery, QueryCache, ReactQueryCacheProvider } from "react-query";
-import { Button, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import { Link } from "react-router-native";
 import * as api from "../api";
 import { useUser } from "../service/user";
 import CreateCollection from "../components/create-collection";
 import Item from "../components/collection-list/item";
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 36,
+    fontWeight: "700",
+    textAlign: "center",
+  },
+});
 
 const Home = () => {
   const user = useUser();
@@ -23,11 +31,11 @@ const Home = () => {
 
   return (
     <View>
-      <Text>Here comes the home screen with a list of collections</Text>
+      <Text style={styles.title}>Your Collections</Text>
+      <CreateCollection />
       {data.map((collection) => (
         <Item key={collection.id} collection={collection} />
       ))}
-      <CreateCollection />
     </View>
   );
 };
