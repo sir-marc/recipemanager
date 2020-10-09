@@ -37,6 +37,13 @@ export const collections = {
 };
 
 export const recipes = {
+  create: (recipe) => {
+    return fetch(RECIPES, {
+      method: "POST",
+      body: JSON.stringify(recipe),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => res.json());
+  },
   delete: (id) => {
     return fetch(`${RECIPES}/${id}`, {
       method: "DELETE",
