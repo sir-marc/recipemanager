@@ -4,6 +4,7 @@ import { useMutation } from "react-query";
 import { Link } from "react-router-native";
 import * as api from "../../api";
 import queryCache from "../../cache";
+import { Icon } from 'react-native-elements';
 
 const styles = StyleSheet.create({
   item: {
@@ -11,6 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     fontSize: 2,
+    
   },
 });
 
@@ -25,7 +27,7 @@ function Item({ collection }) {
       <Link to={`/collection-detail/${collection.id}`} underlayColor="#f0f4f7">
         <Text>{collection.title}</Text>
       </Link>
-      <Button onPress={() => deleteRecipe(collection.id)} title="D"></Button>
+      <Icon name='delete' onPress={()=> deleteRecipe(collection.id)}/>
     </View>
   );
 }
