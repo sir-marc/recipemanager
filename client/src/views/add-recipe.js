@@ -4,13 +4,11 @@ import { useBack } from "../service/utils/hooks/history";
 import { useUser } from "../service/user";
 import AddRecipeForm from "../components/create-recipe";
 
-const AddRecipe = () => {
-  const user = useUser();
+const AddRecipe = ({ match }) => {
   const goBack = useBack();
-    
   return (
     <View>
-      <AddRecipeForm/>
+      <AddRecipeForm collection={match.params.collection} />
       <Button onPress={goBack} title="Back to collection"></Button>
     </View>
   );

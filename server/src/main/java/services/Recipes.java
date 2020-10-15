@@ -47,7 +47,19 @@ public class Recipes {
 		return results;
 	}
 	
-
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Entity getOne(@PathParam("id") long id) {
+	    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Key key = KeyFactory.createKey("recipes", id);
+		try {
+			return datastore.get(key);		
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)

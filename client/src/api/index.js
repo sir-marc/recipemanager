@@ -34,9 +34,19 @@ export const collections = {
       headers: { "Content-Type": "application/json" },
     }).then((res) => res.json());
   },
+  get: (id) => {
+    return fetch(`${COLLECTIONS}/${id}`)
+      .then((res) => res.json())
+      .then(singleTransformer);
+  },
 };
 
 export const recipes = {
+  fetchAllPerCollection: (collection) => {
+    return fetch(`${RECIPES}?collection=${collection}`)
+      .then((res) => res.json())
+      .then(listTransformer);
+  },
   create: (recipe) => {
     return fetch(RECIPES, {
       method: "POST",
@@ -55,5 +65,10 @@ export const recipes = {
       body: JSON.stringify(recipe),
       headers: { "Content-Type": "application/json" },
     }).then((res) => res.json());
+  },
+  get: (id) => {
+    return fetch(`${RECIPES}/${id}`)
+      .then((res) => res.json())
+      .then(singleTransformer);
   },
 };
