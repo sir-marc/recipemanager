@@ -3,27 +3,23 @@ import { Button, View, TextInput, StyleSheet } from "react-native";
 
 const emptyRecipe = { title: "" };
 const styles = StyleSheet.create({
-recipeForm:{
-  flexDirection: 'column-reverse',
-  justifyContent: 'center',
-  alignItems: "center",
-  marginTop: 50,
-  marginBottom: 5,
-},
-recipeInput:{
+  recipeForm: {
+    flexDirection: 'column-reverse',
+    justifyContent: 'center',
+    alignItems: "center",
+    marginTop: 50,
+    marginBottom: 5,
+  },
+  recipeInput: {
     borderWidth: 1,
     borderColor: "black",
     borderStyle: "dashed",
     padding: 5,
-    
-    textAlignVertical:'top',
-    fontSize:16,
-   width:300,
-   height:250
-   
-   
-
-}
+    textAlignVertical: 'top',
+    fontSize: 16,
+    width: 300,
+    height: 250
+  }
 });
 const CreateRecipeForm = ({ onSubmit }) => {
   const [recipe, setRecipe] = React.useState(emptyRecipe);
