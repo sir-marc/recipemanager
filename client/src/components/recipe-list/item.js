@@ -13,7 +13,7 @@ function RecipeItem({ recipe }) {
   });
   return (
     <View>
-      <Button onPress={() => deleteRecipe(api.recipes.id)} title="D"></Button>
+      <Button onPress={() => deleteRecipe(recipe.id)} title="D"></Button>
       <Link to={`/recipe-detail/${recipe.id}`} underlayColor="#f0f4f7">
         <Text>{recipe.title}</Text>
       </Link>
