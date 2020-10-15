@@ -31,14 +31,18 @@ const styles = StyleSheet.create({
     height: 250,
   },
 });
-const CreateRecipeForm = ({ onSubmit }) => {
-  const [recipe, setRecipe] = React.useState(emptyRecipe);
+
+const CreateRecipeForm = ({
+  onSubmit,
+  data = emptyRecipe,
+  buttonTitle = "Create Recipe",
+}) => {
+  const [recipe, setRecipe] = React.useState(data);
   const setTitle = (title) => setRecipe((recipe) => ({ ...recipe, title }));
   const setInstructions = (instructions) =>
     setRecipe((recipe) => ({ ...recipe, instructions }));
 
   const handleSubmit = () => {
-    setRecipe(emptyRecipe);
     onSubmit(recipe);
   };
   return (
@@ -57,7 +61,7 @@ const CreateRecipeForm = ({ onSubmit }) => {
         numberOfLines={10}
         multiline={true}
       ></TextInput>
-      <Button onPress={handleSubmit} title="Create Your Recipe"></Button>
+      <Button onPress={handleSubmit} title={buttonTitle}></Button>
     </View>
   );
 };
