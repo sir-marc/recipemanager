@@ -25,7 +25,7 @@ function App() {
                 component={CollectionDetail}
               />
               <Route path="/recipe-detail/:id" component={RecipeDetail} />
-              <Route path="/add-recipe" component={AddRecipe} />
+              <Route path="/add-recipe/:collection" component={AddRecipe} />
               <Route path="/edit-recipe/:id" component={EditRecipe} />
               <Route component={Home} />
             </Switch>

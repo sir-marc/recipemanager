@@ -4,19 +4,17 @@ import * as api from "../../api";
 import { useUser } from "../../service/user";
 import CreateRecipeForm from "./form";
 
-const CreateRecipe = () => {
+const CreateRecipe = ({ collection }) => {
   const user = useUser();
   const cache = useQueryCache();
   const [createRecipe] = useMutation(
-    (recipe) => api.recipes.create({ ...recipe, owner: user }),
+    (recipe) => api.recipes.create({ ...recipe, collection, owner: user }),
     {
       onSuccess: () => cache.invalidateQueries("recipes"),
     }
   );
 
-  return (
-    <CreateRecipeForm onSubmit={createRecipe}></CreateRecipeForm>
-  );
+  return <CreateRecipeForm onSubmit={createRecipe}></CreateRecipeForm>;
 };
 
 export default CreateRecipe;
