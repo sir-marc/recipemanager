@@ -1,7 +1,6 @@
 import React from "react";
-import { useQuery, QueryCache, ReactQueryCacheProvider } from "react-query";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { Link } from "react-router-native";
+import { useQuery } from "react-query";
+import { StyleSheet, Text, View } from "react-native";
 import * as api from "../api";
 import { useUser } from "../service/user";
 import CreateCollection from "../components/create-collection";
