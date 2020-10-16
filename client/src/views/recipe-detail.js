@@ -10,6 +10,19 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: "700",
     textAlign: "center",
+    marginBottom: 20,
+  },
+  recipeDetail: {
+    alignItems: "center",
+    padding: 10,
+  },
+  textLikeButton: {
+    color: "#007AFF",
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  instructions: {
+    alignItems: "center",
   },
 });
 
@@ -30,13 +43,15 @@ const RecipeDetail = ({ match }) => {
   }
 
   return (
-    <View>
+    <View style={styles.instructions}>
       <Text style={styles.title}>{data.title}</Text>
       <Text>{data.instructions}</Text>
-      <Link to={`/edit-recipe/${recipeId}`} underlayColor="#f0f4f7">
-        <Text>Edit this Recipe</Text>
-      </Link>
-      <Button onPress={goBack} title="Back to collection"></Button>
+      <View style={styles.recipeDetail}>
+        <Link to={`/edit-recipe/${recipeId}`} underlayColor="#f0f4f7">
+          <Text style={styles.textLikeButton}>Edit this Recipe</Text>
+        </Link>
+        <Button onPress={goBack} title="Back to collection"></Button>
+      </View>
     </View>
   );
 };

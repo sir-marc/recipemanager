@@ -10,6 +10,16 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: "700",
     textAlign: "center",
+    marginBottom: 20,
+  },
+  textLikeButton: {
+    color: "#007AFF",
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  textButtons: {
+    marginTop: 30,
+    alignSelf: "center",
   },
 });
 
@@ -52,13 +62,14 @@ const CollectionDetail = ({ match }) => {
       {recipes.map((recipe) => (
         <Item recipe={recipe} key={recipe.id}></Item>
       ))}
-
-      <Link to={`/add-recipe/${collectionId}`} underlayColor="#f0f4f7">
-        <Text>Add a Recipe</Text>
-      </Link>
-      <Link to="/" underlayColor="#f0f4f7">
-        <Text>back to overview</Text>
-      </Link>
+      <View style={styles.textButtons}>
+        <Link to={`/add-recipe/${collectionId}`} underlayColor="#f0f4f7">
+          <Text style={styles.textLikeButton}>Add a Recipe</Text>
+        </Link>
+        <Link to="/" underlayColor="#f0f4f7">
+          <Text style={styles.textLikeButton}>back to overview</Text>
+        </Link>
+      </View>
     </View>
   );
 };
