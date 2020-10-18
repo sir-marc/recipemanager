@@ -4,6 +4,7 @@ import { Text, View, Button } from "react-native";
 import { useBack } from "../service/utils/hooks/history";
 import * as api from "../api";
 import RecipeForm from "../components/recipe-form";
+import Header from "../components/visual/header";
 
 const EditRecipe = ({ match }) => {
   const goBack = useBack();
@@ -33,14 +34,15 @@ const EditRecipe = ({ match }) => {
   }
 
   return (
-    <View>
+    <>
+      <Header title="Edit your recipe"></Header>
       <RecipeForm
         onSubmit={updateRecipe}
         data={data}
         buttonTitle={"Update recipe"}
       ></RecipeForm>
       <Button onPress={goBack} title="Back to recipe"></Button>
-    </View>
+    </>
   );
 };
 

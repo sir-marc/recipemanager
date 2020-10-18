@@ -1,18 +1,12 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import * as api from "../api";
 import { useUser } from "../service/user";
 import CreateCollection from "../components/create-collection";
 import Item from "../components/collection-list/item";
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 36,
-    fontWeight: "700",
-    textAlign: "center",
-  },
-});
+import Header from "../components/visual/header";
+import Container from "../components/visual/container";
 
 const Home = () => {
   const user = useUser();
@@ -29,13 +23,15 @@ const Home = () => {
   }
 
   return (
-    <View>
-      <Text style={styles.title}>Your Collections</Text>
-      <CreateCollection />
-      {data.map((collection) => (
-        <Item key={collection.id} collection={collection} />
-      ))}
-    </View>
+    <>
+      <Header title={"Your collections"} />
+      <Container>
+        <CreateCollection />
+        {data.map((collection) => (
+          <Item key={collection.id} collection={collection} />
+        ))}
+      </Container>
+    </>
   );
 };
 

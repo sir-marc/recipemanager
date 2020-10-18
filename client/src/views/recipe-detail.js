@@ -4,25 +4,24 @@ import { Button, Text, View, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 import { useBack } from "../service/utils/hooks/history";
 import * as api from "../api";
+import Header from "../components/visual/header";
+import Container from "../components/visual/container";
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 36,
-    fontWeight: "700",
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  recipeDetail: {
+  buttons: {
+    marginTop: 30,
+    marginBottom: 10,
     alignItems: "center",
-    padding: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
   },
   textLikeButton: {
     color: "#007AFF",
-    fontSize: 20,
-    marginBottom: 10,
+    fontSize: 18,
   },
   instructions: {
-    alignItems: "center",
+    fontSize: 16,
   },
 });
 
@@ -43,16 +42,18 @@ const RecipeDetail = ({ match }) => {
   }
 
   return (
-    <View style={styles.instructions}>
-      <Text style={styles.title}>{data.title}</Text>
-      <Text>{data.instructions}</Text>
-      <View style={styles.recipeDetail}>
-        <Link to={`/edit-recipe/${recipeId}`} underlayColor="#f0f4f7">
-          <Text style={styles.textLikeButton}>Edit this Recipe</Text>
-        </Link>
-        <Button onPress={goBack} title="Back to collection"></Button>
-      </View>
-    </View>
+    <>
+      <Header title={data.title} />
+      <Container>
+        <View style={styles.buttons}>
+          <Button onPress={goBack} title="Back"></Button>
+          <Link to={`/edit-recipe/${recipeId}`} underlayColor="#f0f4f7">
+            <Text style={styles.textLikeButton}>Edit this Recipe</Text>
+          </Link>
+        </View>
+        <Text style={styles.instructions}>{data.instructions}</Text>
+      </Container>
+    </>
   );
 };
 

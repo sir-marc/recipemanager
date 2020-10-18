@@ -11,13 +11,11 @@ import { ReactQueryCacheProvider } from "react-query";
 import queryCache from "./src/cache";
 
 function App() {
-  const user = useUser();
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
       <NativeRouter>
         <BackButton>
           <View style={styles.container}>
-            <Text>{user}</Text>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route
@@ -41,7 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    paddingTop: 80,
+    width: "100%",
   },
 });
 

@@ -8,15 +8,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 30,
     marginBottom: 30,
   },
   input: {
     flexGrow: 2,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#dedede",
     borderStyle: "solid",
-    padding: 5,
+    padding: 10,
+    fontSize: 16,
   },
 });
 
@@ -35,6 +36,7 @@ const CreateCollectionForm = ({ onSubmit }) => {
         style={styles.input}
         value={collection.title}
         onChangeText={setTitle}
+        placeholder="New collection"
       ></TextInput>
       <Button onPress={handleSubmit} title="Create"></Button>
     </View>
