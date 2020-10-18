@@ -4,22 +4,26 @@ import { Text, View, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 import * as api from "../api";
 import Item from "../components/recipe-list/item";
+import Header from "../components/visual/header";
+import Container from "../components/visual/container";
 
 const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: "700",
     textAlign: "center",
-    marginBottom: 20,
   },
   textLikeButton: {
     color: "#007AFF",
     fontSize: 20,
-    marginBottom: 10,
   },
   textButtons: {
     marginTop: 30,
-    alignSelf: "center",
+    marginBottom: 10,
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
   },
 });
 
@@ -56,21 +60,22 @@ const CollectionDetail = ({ match }) => {
   }
 
   return (
-    <View>
-      <Text style={styles.title}>{collection.title}</Text>
-
-      {recipes.map((recipe) => (
-        <Item recipe={recipe} key={recipe.id}></Item>
-      ))}
-      <View style={styles.textButtons}>
-        <Link to={`/add-recipe/${collectionId}`} underlayColor="#f0f4f7">
-          <Text style={styles.textLikeButton}>Add a Recipe</Text>
-        </Link>
-        <Link to="/" underlayColor="#f0f4f7">
-          <Text style={styles.textLikeButton}>back to overview</Text>
-        </Link>
-      </View>
-    </View>
+    <>
+      <Header title={collection.title} />
+      <Container>
+        <View style={styles.textButtons}>
+          <Link to="/" underlayColor="#f0f4f7">
+            <Text style={styles.textLikeButton}>Back</Text>
+          </Link>
+          <Link to={`/add-recipe/${collectionId}`} underlayColor="#f0f4f7">
+            <Text style={styles.textLikeButton}>Add a Recipe</Text>
+          </Link>
+        </View>
+        {recipes.map((recipe) => (
+          <Item recipe={recipe} key={recipe.id}></Item>
+        ))}
+      </Container>
+    </>
   );
 };
 
